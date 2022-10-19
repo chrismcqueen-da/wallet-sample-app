@@ -14,6 +14,7 @@ import { PendingSendDetailsPage } from "./PendingSendDetailsPage";
 import { PendingSwapDetailsPage } from "./PendingSwapDetailsPage";
 import { SendPage } from "./SendPage";
 import { SwapPage } from "./SwapPage";
+import { Widgets } from "./WidgetsPage";
 
 interface PagesProps {
   getPublicParty: () => PublicParty;
@@ -39,6 +40,8 @@ export const Pages: React.FC<PagesProps> = React.memo((props) => {
       <Route path="/issue" element={<IssueAirdropPage />} />
       <Route path="/invite" element={<AccountInvitePage />} />
       <Route path="/create" element={<CreateAssetAccountPage />} />
+      <Route path="/test" element={<Widgets />} />
+
       <Route
         path="/"
         element={<MyActiveAccountsPage getPublicParty={getPublicParty} />}
