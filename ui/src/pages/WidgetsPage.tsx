@@ -1,5 +1,5 @@
 import { AssetHoldingAccount } from '@daml.js/account/lib/Account';
-import React, { useContext } from 'react';
+import React from 'react';
 import { userContext } from '../App';
 
 
@@ -8,6 +8,7 @@ const ActiveAccountsCount = () => {
   const count = res.contracts.length;
   return (
     <>
+    {/* {res.contracts[0].payload.assetType.symbol} */}
     {count}
     </>
   )
