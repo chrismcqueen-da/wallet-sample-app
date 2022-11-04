@@ -10,6 +10,7 @@ import DA.Action
 acceptAirdropRequestTrigger: T.Trigger ()
 acceptAirdropRequestTrigger = T.Trigger 
  { initialize = pure (),
+-- what is the lambda underscore doing that wasn't done before in the initializer?
   updateState = \_  -> pure (),
   registeredTemplates = T.RegisteredTemplates [T.registeredTemplate @AirdropRequest],
   rule = \p -> do

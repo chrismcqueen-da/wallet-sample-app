@@ -44,7 +44,7 @@ asset_tests = script do
       amount = 0.0
       observers = Set.empty
 
- -- Cannot issue asset on behalf of someone else
+  -- Cannot issue asset on behalf of someone else
   submitMustFail alice do
     createCmd Asset with
       assetType = alice_tkn
@@ -52,6 +52,7 @@ asset_tests = script do
       amount = -10.0
       observers = Set.empty
 
+  -- Create Asset for Alice with an amount of 10.0 and no observers
   (cid) <- submit alice do 
     createCmd Asset with
       assetType = alice_tkn

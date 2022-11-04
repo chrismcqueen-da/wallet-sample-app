@@ -6,13 +6,19 @@ import DA.Foldable
 import DA.Action
 
 sendAssetHoldingAccountInviteTrigger: T.Trigger ()
-sendAssetHoldingAccountInviteTrigger = T.Trigger 
+sendAssetHoldingAccountInviteTrigger = T.Trigger
+
+  -- all Triggers must address an initialize and updateState phase
  { initialize = pure (),
   updateState = \_  -> pure (),
   registeredTemplates = T.RegisteredTemplates [T.registeredTemplate @AssetHoldingAccountRequest, T.registeredTemplate @AssetHoldingAccount],
+  
   rule = \p -> do
     asset_holding_account_requests <- T.query @AssetHoldingAccountRequest
+    -- function that ensures the request was not made by the recipient
     let isNotMe = (\requests -> requests.recipient /= p)
+    
+    -- filter out contracts where recipient is the party that's running the function
     let notMeList = filter (\(_, contract) -> isNotMe contract) asset_holding_account_requests
     let requests = map fst notMeList
     debug ("requests",requests)
