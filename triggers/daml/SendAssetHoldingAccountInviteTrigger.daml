@@ -17,11 +17,11 @@ sendAssetHoldingAccountInviteTrigger = T.Trigger
     asset_holding_account_requests <- T.query @AssetHoldingAccountRequest
     -- function that ensures the request was not made by the recipient
     let isNotMe = (\requests -> requests.recipient /= p)
-    
     -- filter out contracts where recipient is the party that's running the function
     let notMeList = filter (\(_, contract) -> isNotMe contract) asset_holding_account_requests
     let requests = map fst notMeList
     debug ("requests",requests)
+    
     assetAccounts <- T.query @AssetHoldingAccount
     debug ("assetAccounts", assetAccounts)
     let isET = (\account -> account.assetType.symbol == "ET" && account.assetType.issuer == p && account.owner == p)
@@ -29,7 +29,6 @@ sendAssetHoldingAccountInviteTrigger = T.Trigger
     let cids = map fst etAccounts
     debug ("etAccounts", cids)
 
-    
     unless ( DA.Foldable.null requests && DA.Foldable.null cids ) do
       case etAccounts of 
         [] -> pure ()
