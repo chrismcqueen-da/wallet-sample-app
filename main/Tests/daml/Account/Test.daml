@@ -1,4 +1,4 @@
-module Account.Test where
+module Test where
 import Account
 import Asset
 
