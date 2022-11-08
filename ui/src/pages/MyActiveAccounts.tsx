@@ -30,7 +30,7 @@ interface MyActiveAccountsPageProps {
 export const MyActiveAccountsPage: React.FC<MyActiveAccountsPageProps> = (
 ) => {
   const classes = useStyles();
-  const { loading, contracts } = useGetAllAssetHoldingAccounts();
+  const { loading, contracts } = useGetAllAssetHoldingAccounts(); //react hook
 
   const assetRows = contracts.map((contract) => (
     <AssetAccountRow
